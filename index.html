@@ -809,10 +809,11 @@
                         setCurrentIndex(prev => {
                             if (prev >= loadedImages.length) {
                                 clearInterval(spawnTimerRef.current);
-                                setStatus('finished');
-                                stopRecording();
-                                cancelAnimationFrame(animFrameRef.current);
-                                animFrameRef.current = null;
+                                // 修正: 完了後、3秒待ってから録画を停止する
+                                setTimeout(() => {
+                                    stopRecording();
+                                    setStatus('finished');
+                                }, 3000);
                                 return prev;
                             }
                             spawnImage(prev);
