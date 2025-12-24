@@ -809,11 +809,11 @@
                         setCurrentIndex(prev => {
                             if (prev >= loadedImages.length) {
                                 clearInterval(spawnTimerRef.current);
-                                // 修正: 完了後、待機時間を8秒に延長して余韻を確実に録画する
+                                // 修正: 完了後、待機時間を4秒に短縮
                                 setTimeout(() => {
                                     stopRecording();
                                     setStatus('finished');
-                                }, 8000);
+                                }, 4000);
                                 return prev;
                             }
                             spawnImage(prev);
